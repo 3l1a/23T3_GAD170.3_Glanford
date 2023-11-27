@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
  
 [RequireComponent(typeof(CharacterController))]
@@ -14,10 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     // These variables (visible in the inspector) are for you to set up to match the right feel
     public float speed = 12f;
-    public float speedH = 2.0f;
-    public float speedV = 2.0f;
+    public float speedH = 700f;
+    
     public float yaw = 0.0f;
-    public float pitch = 0.0f;
+    
 
     // This must be linked to the object that has the "Character Controller" in the inspector. You may need to add this component to the object
     public CharacterController controller;
@@ -37,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         // If the variable "controller" is empty...
         if(controller == null)
         {
@@ -48,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // These lines let the script rotate the player based on the mouse moving
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
+        yaw += speedH * Input.GetAxis("Mouse X") * Time.deltaTime;
+        
 
         // Get the Left/Right and Forward/Back values of the input being used (WASD, Joystick etc.)
         float x = Input.GetAxis("Horizontal");
