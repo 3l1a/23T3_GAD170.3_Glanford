@@ -12,6 +12,7 @@ public class Quit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(0);
         }
     }
