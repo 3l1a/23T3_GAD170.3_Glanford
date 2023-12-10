@@ -11,10 +11,13 @@ public class RockSpawner : MonoBehaviour
 
     [SerializeField] private List<Rock> rocks = new List<Rock>();
 
+    private int i = 1; 
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") == true)
         {
+            i += 1;
             Debug.Log("working");
 
             Vector3 spawnPosition = rockSP[Random.Range(0,rockSP.Count)].transform.position;
@@ -25,7 +28,7 @@ public class RockSpawner : MonoBehaviour
 
             foreach ( Rock rock in rocks)
             {
-                rock.name = "Rock";
+                rock.name = "Rock" + i;
             }
         }
 
